@@ -1,11 +1,13 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from '../auth/auth.module';
+import { Solicitacao } from './solicitacao.entity';
 import { SolicitacoesController } from './solicitacoes.controller';
 import { SolicitacoesService } from './solicitacoes.service';
-import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
-  imports: [AuthModule],
+  imports: [AuthModule, TypeOrmModule.forFeature([Solicitacao])],
   controllers: [SolicitacoesController],
-  providers: [SolicitacoesService]
+  providers: [SolicitacoesService],
 })
 export class SolicitacoesModule {}
